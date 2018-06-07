@@ -45,7 +45,7 @@ export function createActionReducer(actions, initialState = undefined) {
     ...acc,
     [operation.type]: operation.reducer
   }), {})
-  return (state = initialState, action) => {
+  return (state = initialState, action = {}) => {
     const reducer = operationMap[action.type]
     return reducer ? reducer(state, action) : state
   }
