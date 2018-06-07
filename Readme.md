@@ -42,15 +42,15 @@ import {createAssignmentCreator} from "@wayrunner/redux-action-creator";
 export const setValue = createAssignmentCreator('SET_VALUE', 'value')
 ```
 
-### ```createActionReducer(actions)```
+### ```createActionReducer(actions, $$initialState)```
 Create a new action creator:
 ```js
 import {createActionReducer} from "@wayrunner/redux-action-creator";
 import * as actions from './actions'
 
-const reducer = createActionReducer(actions) // Or createActionReducer([actions.setValue, actions.subtract])
+const reducer = createActionReducer(actions, {value: 0}) // Or createActionReducer([actions.setValue, actions.subtract])
 
-reducer({value: 10}, actions.subtract(2)) // -> { value: 8 }
+reducer(undefined, actions.subtract(2)) // -> { value: -2 }
 reducer({value: 10}, actions.setValue(20)) // -> { value: 20 }
 ```
 
